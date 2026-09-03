@@ -1,0 +1,29 @@
+diff --git a/os/hal/ports/STM32/STM32G0xx/hal_efl_lld.h b/os/hal/ports/STM32/STM32G0xx/hal_efl_lld.h
+index b31db288a7..0a796adcd9 100644
+--- a/os/hal/ports/STM32/STM32G0xx/hal_efl_lld.h
++++ b/os/hal/ports/STM32/STM32G0xx/hal_efl_lld.h
+@@ -52,7 +52,7 @@
+ /*===========================================================================*/
+ 
+ #if defined(STM32G070xx) || defined(STM32G071xx) ||                         \
+-    defined(STM32G081xx) ||                                                 \
++    defined(STM32G081xx) || defined(STM32G0B1xx) ||                         \
+     defined(__DOXYGEN__)
+ 
+ /* Flash size register. */
+diff --git a/os/hal/ports/STM32/STM32G0xx/stm32_registry.h b/os/hal/ports/STM32/STM32G0xx/stm32_registry.h
+index b22320955e..06824f4e33 100644
+--- a/os/hal/ports/STM32/STM32G0xx/stm32_registry.h
++++ b/os/hal/ports/STM32/STM32G0xx/stm32_registry.h
+@@ -712,7 +712,11 @@
+ #define STM32_EXTI_IMR2_MASK                0xFFFFFFFFU
+ 
+ /* Flash attributes.*/
++#if defined(STM32G0B1xx)
++#define STM32_FLASH_NUMBER_OF_BANKS         1
++#else
+ #define STM32_FLASH_NUMBER_OF_BANKS         2
++#endif
+ 
+ /* GPIO attributes.*/
+ #define STM32_HAS_GPIOA                     TRUE
