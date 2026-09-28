@@ -16,9 +16,15 @@
 
 #pragma once
 
-/* Select hand configuration */
+/* 3 ブロック x 4 レイヤー (Keeb-On! Studio の OS 切り替え用) */
 #define DYNAMIC_KEYMAP_LAYER_COUNT 12
+#define KEEBON_OS_LAYERS_PER_BLOCK 4
+#define KEEBON_OS_BLOCK_COUNT 3
+
+#define VIAL_KEYBOARD_UID {0x23, 0x75, 0x96, 0x3E, 0x65, 0x9E, 0xB7, 0x43}
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 6 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 5 }
 
 #define QUICK_TAP_TERM 0
 #define TAPPING_TERM 180
-#define PERMISIVE_HOLD
+#define PERMISSIVE_HOLD
