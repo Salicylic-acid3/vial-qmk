@@ -25,3 +25,8 @@
 /* NumLock + 0 を押し続けるとアンロック */
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
 #define VIAL_UNLOCK_COMBO_COLS { 0, 4 }
+
+#define NUM_LOCK_LED_PIN A6
+
+// Active Low（Low=点灯）の設定
+#define LED_PIN_ON_STATE 0
