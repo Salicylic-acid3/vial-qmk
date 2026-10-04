@@ -202,9 +202,5 @@
                 }
             ]
         }
-    },
-    "indicators": {
-        "num_lock": "A6",
-        "on_state": 0
     }
 }
