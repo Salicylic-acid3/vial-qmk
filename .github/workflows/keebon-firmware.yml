@@ -1,0 +1,89 @@
+# Builds the Keeb-On! Studio firmware (each keyboard's multi-os keymap) and
+# publishes it as a GitHub release. Keeb-On! Studio's firmware page links to
+# `releases/latest/download/<keyboard>.<uf2|bin>`, so the asset names below
+# must stay the keyboard folder names.
+#
+# Run it from the Actions tab ("Run workflow" on keebon-os), or push a tag
+# starting with keebon- . Each run makes a new release, which becomes
+# "latest".
+name: Keeb-On! firmware
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "keebon-*"
+
+permissions:
+  contents: write
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    outputs:
+      keyboards: ${{ steps.list.outputs.keyboards }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list
+        # Every keyboard that has a multi-os keymap.
+        run: |
+          kbs=$(ls -d keyboards/salicylic_acid3/*/keymaps/multi-os | cut -d/ -f3 | jq -R . | jq -cs .)
+          echo "keyboards=$kbs" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: list
+    runs-on: ubuntu-latest
+    container: ghcr.io/qmk/qmk_cli
+    strategy:
+      fail-fast: false
+      matrix:
+        keyboard: ${{ fromJson(needs.list.outputs.keyboards) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Patch ChibiOS for STM32G0B1 (patches/README.md)
+        run: |
+          git config --global --add safe.directory '*'
+          ./patches/apply.sh
+      - name: Build
+        run: |
+          python3 -m pip install -r requirements.txt --break-system-packages || python3 -m pip install -r requirements.txt
+          make salicylic_acid3/${{ matrix.keyboard }}:multi-os
+          mkdir -p out
+          for ext in uf2 bin; do
+            f=salicylic_acid3_${{ matrix.keyboard }}_multi-os.$ext
+            [ -f "$f" ] || f=.build/$f
+            if [ -f "$f" ]; then cp "$f" "out/${{ matrix.keyboard }}.$ext"; fi
+          done
+          # .uf2 boards also produce a .bin; ship only what is flashed.
+          if [ -f out/${{ matrix.keyboard }}.uf2 ]; then rm -f out/${{ matrix.keyboard }}.bin; fi
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fw-${{ matrix.keyboard }}
+          path: out/*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Name the release
+        id: name
+        run: |
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=keebon-$(date -u +%Y%m%d)-${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.name.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: Keeb-On! firmware ${{ steps.name.outputs.tag }}
+          files: dist/*
+          make_latest: true
