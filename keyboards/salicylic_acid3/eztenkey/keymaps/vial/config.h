@@ -16,14 +16,12 @@
 
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0x86, 0x07, 0xEB, 0xC0, 0xF8, 0x2D, 0x54, 0x66}
-/* 左上の2キー（Esc と その下）を押し続けるとアンロック */
-#define VIAL_UNLOCK_COMBO_ROWS { 0, 1 }
-#define VIAL_UNLOCK_COMBO_COLS { 0, 0 }
+#define VIAL_KEYBOARD_UID {0x5A, 0x7F, 0x38, 0xED, 0x84, 0x28, 0x67, 0xA7}
+/* NumLock + 0 を押し続けるとアンロック */
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 4 }
 
-/* 3 ブロック x 4 レイヤー (Keeb-On! Studio の OS 切り替え用) */
-/* keyboard.json の dynamic_keymap.layer_count より優先させる */
-#undef DYNAMIC_KEYMAP_LAYER_COUNT
-#define DYNAMIC_KEYMAP_LAYER_COUNT 12
-#define KEEBON_OS_LAYERS_PER_BLOCK 4
-#define KEEBON_OS_BLOCK_COUNT 3
+#define NUM_LOCK_LED_PIN A2
+
+// Active Low（Low=点灯）の設定
+#define LED_PIN_ON_STATE 0
