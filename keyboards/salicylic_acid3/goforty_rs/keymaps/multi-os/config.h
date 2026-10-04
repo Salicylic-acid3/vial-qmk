@@ -1,4 +1,4 @@
-/* Copyright 2021 Salicylic_acid3
+/* Copyright 2024 Salicylic_acid3
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,14 @@
 #pragma once
 
 /* Select hand configuration */
-#define DYNAMIC_KEYMAP_LAYER_COUNT 12
+
 #define VIAL_KEYBOARD_UID {0x05, 0x2E, 0xD5, 0x62, 0xE0, 0x78, 0x8D, 0xC0}
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 1 }
 #define VIAL_UNLOCK_COMBO_COLS { 0, 11 }
 
+/* 3 ブロック x 4 レイヤー (Keeb-On! Studio の OS 切り替え用) */
+/* keyboard.json の dynamic_keymap.layer_count より優先させる */
+#undef DYNAMIC_KEYMAP_LAYER_COUNT
+#define DYNAMIC_KEYMAP_LAYER_COUNT 12
+#define KEEBON_OS_LAYERS_PER_BLOCK 4
+#define KEEBON_OS_BLOCK_COUNT 3

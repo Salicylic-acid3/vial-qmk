@@ -15,9 +15,9 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "os_detection.h"
 
-bool os_checked = false;
+// OS 自動切り替えは users/salicylic_acid3/keebon_os.c が行う
+// (Windows: 0-3, macOS/iOS: 4-7, Linux: 8-11)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [4] = LAYOUT(
          KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
         KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,        KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,  KC_ENT,
-        KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,   MO(1),
+        KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,   MO(5),
         KC_LEFT,   KC_UP,KC_RIGHT,  KC_SPC,  KC_SPC,  KC_SPC,      KC_SPC,  KC_SPC,  KC_SPC, KC_LEFT,   KC_UP,KC_RIGHT,
                  KC_DOWN,                                                                             KC_DOWN
     ),
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [8] = LAYOUT(
          KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
         KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,        KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,  KC_ENT,
-        KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,   MO(1),
+        KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,   MO(9),
         KC_LEFT,   KC_UP,KC_RIGHT,  KC_SPC,  KC_SPC,  KC_SPC,      KC_SPC,  KC_SPC,  KC_SPC, KC_LEFT,   KC_UP,KC_RIGHT,
                  KC_DOWN,                                                                             KC_DOWN
     ),
@@ -105,23 +105,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  _______,                                                                             _______
     )
 };
-
-void keyboard_post_init_user(void) {
-  wait_ms(400);
-  switch (detected_host_os()) {
-    case OS_WINDOWS:
-      layer_move(0);
-      break;
-    case OS_MACOS:
-      layer_move(4);
-      break;
-    case OS_IOS:
-      layer_move(4);
-      break;
-    case OS_LINUX:
-      layer_move(8);
-      break;
-    default:
-      layer_move(0);
-  }
-}

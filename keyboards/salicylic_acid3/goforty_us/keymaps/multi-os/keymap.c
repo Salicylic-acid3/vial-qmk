@@ -16,9 +16,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
-#include "os_detection.h"
 
-bool os_checked = false;
+// OS 自動切り替えは users/salicylic_acid3/keebon_os.c が行う
+// (Windows: 0-3, macOS/iOS: 4-7, Linux: 8-11)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
@@ -94,23 +94,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______,                _______,                      _______, _______, _______
     )
 };
-
-void keyboard_post_init_user(void) {
-  wait_ms(400);
-  switch (detected_host_os()) {
-    case OS_WINDOWS:
-      layer_move(0);
-      break;
-    case OS_MACOS:
-      layer_move(4);
-      break;
-    case OS_IOS:
-      layer_move(4);
-      break;
-    case OS_LINUX:
-      layer_move(8);
-      break;
-    default:
-      layer_move(0);
-  }
-}

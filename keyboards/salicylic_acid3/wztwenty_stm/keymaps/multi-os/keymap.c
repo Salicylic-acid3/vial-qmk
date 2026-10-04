@@ -16,7 +16,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
-#include "os_detection.h"
+
+// OS 自動切り替えは users/salicylic_acid3/keebon_os.c が行う
+// (Windows: 0-3, macOS/iOS: 4-7, Linux: 8-11)
+
+void board_init(void) {
+    /* Keep USB FS on PA11/PA12 and disconnect the GPIO input pulls. */
+    SYSCFG->CFGR1 &= ~(SYSCFG_CFGR1_PA11_RMP | SYSCFG_CFGR1_PA12_RMP);
+    palSetPadMode(GPIOA, GPIOA_PIN11, PAL_MODE_INPUT_ANALOG);
+    palSetPadMode(GPIOA, GPIOA_PIN12, PAL_MODE_INPUT_ANALOG);
+
+    RCC->APBENR1 |= RCC_APBENR1_CRSEN;
+    (void)RCC->APBENR1;
+
+    /* Select USB SOF as the CRS synchronization source. */
+    CRS->CFGR =
+        (CRS->CFGR & ~CRS_CFGR_SYNCSRC_Msk) |
+        CRS_CFGR_SYNCSRC_1;
+
+    /* Enable HSI48 automatic trimming and the frequency error counter. */
+    CRS->CR |= CRS_CR_AUTOTRIMEN | CRS_CR_CEN;
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
@@ -92,23 +112,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______
     )
 };
-
-void keyboard_post_init_user(void) {
-  wait_ms(400);
-  switch (detected_host_os()) {
-    case OS_WINDOWS:
-      layer_move(0);
-      break;
-    case OS_MACOS:
-      layer_move(4);
-      break;
-    case OS_IOS:
-      layer_move(4);
-      break;
-    case OS_LINUX:
-      layer_move(8);
-      break;
-    default:
-      layer_move(0);
-  }
-}

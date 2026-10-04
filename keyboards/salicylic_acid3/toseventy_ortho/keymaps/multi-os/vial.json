@@ -6,6 +6,38 @@
         "rows": 5,
         "cols": 16
     },
+    "keebOn": {
+        "osProtocol": 1,
+        "osBlocks": [
+            {
+                "id": "A",
+                "layers": [
+                    0,
+                    1,
+                    2,
+                    3
+                ]
+            },
+            {
+                "id": "B",
+                "layers": [
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            },
+            {
+                "id": "C",
+                "layers": [
+                    8,
+                    9,
+                    10,
+                    11
+                ]
+            }
+        ]
+    },
     "layouts": {
         "labels": [
             [
