@@ -1,0 +1,210 @@
+{
+    "manufacturer": "Salicylic-acid3",
+    "keyboard_name": "clickboard_tenkey",
+    "maintainer": "Salicylic-acid3",
+    "bootloader": "stm32-dfu",
+    "features": {
+        "bootmagic": false,
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": false
+    },
+    "startup_delay": 0,
+    "usb_polling_interval_ms": 10,
+    "matrix_pins": {
+        "direct": [
+            [
+                "A5",
+                "A7",
+                "B0",
+                "B1",
+                "B2",
+                "A9",
+                "C6",
+                "A10",
+                "A13",
+                "A15",
+                "B8",
+                "B7",
+                "B6",
+                "B5",
+                "B3",
+                "C15",
+                "C14",
+                "B9",
+                "B4"
+            ]
+        ]
+    },
+    "processor": "STM32G0B1",
+    "url": "https://salicylic-acid3.hatenablog.com/",
+    "usb": {
+        "vid": "0x355D",
+        "pid": "0x1026",
+        "device_version": "0.0.1"
+    },
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {
+                    "matrix": [
+                        0,
+                        0
+                    ],
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "matrix": [
+                        0,
+                        5
+                    ],
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "matrix": [
+                        0,
+                        10
+                    ],
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "matrix": [
+                        0,
+                        1
+                    ],
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "matrix": [
+                        0,
+                        6
+                    ],
+                    "x": 1,
+                    "y": 1
+                },
+                {
+                    "matrix": [
+                        0,
+                        11
+                    ],
+                    "x": 2,
+                    "y": 1
+                },
+                {
+                    "matrix": [
+                        0,
+                        15
+                    ],
+                    "x": 3,
+                    "y": 1
+                },
+                {
+                    "matrix": [
+                        0,
+                        2
+                    ],
+                    "x": 0,
+                    "y": 2
+                },
+                {
+                    "matrix": [
+                        0,
+                        7
+                    ],
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "matrix": [
+                        0,
+                        12
+                    ],
+                    "x": 2,
+                    "y": 2
+                },
+                {
+                    "matrix": [
+                        0,
+                        16
+                    ],
+                    "x": 3,
+                    "y": 2
+                },
+                {
+                    "matrix": [
+                        0,
+                        3
+                    ],
+                    "x": 0,
+                    "y": 3
+                },
+                {
+                    "matrix": [
+                        0,
+                        8
+                    ],
+                    "x": 1,
+                    "y": 3
+                },
+                {
+                    "matrix": [
+                        0,
+                        13
+                    ],
+                    "x": 2,
+                    "y": 3
+                },
+                {
+                    "matrix": [
+                        0,
+                        17
+                    ],
+                    "x": 3,
+                    "y": 3
+                },
+                {
+                    "matrix": [
+                        0,
+                        4
+                    ],
+                    "x": 0,
+                    "y": 4
+                },
+                {
+                    "matrix": [
+                        0,
+                        9
+                    ],
+                    "x": 1,
+                    "y": 4
+                },
+                {
+                    "matrix": [
+                        0,
+                        18
+                    ],
+                    "x": 2,
+                    "y": 4
+                },
+                {
+                    "matrix": [
+                        0,
+                        14
+                    ],
+                    "x": 1,
+                    "y": 5
+                }
+            ]
+        }
+    },
+    "indicators": {
+        "num_lock": "A6",
+        "on_state": 0
+    }
+}
