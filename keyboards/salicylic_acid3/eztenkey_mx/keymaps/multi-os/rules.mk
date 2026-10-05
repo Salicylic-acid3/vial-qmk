@@ -15,3 +15,12 @@ KEY_OVERRIDE_ENABLE = yes
 MAGIC_ENABLE = yes
 GRAVE_ESC_ENABLE = yes
 NKRO_ENABLE = yes
+
+# TinyUF2 bootloader (Keeb-On! STM32G0 port) in the first 16 KB: the
+# firmware starts at 0x08004000 and ships as a .uf2, copied onto the
+# KEEBONBOOT drive. Boards without it use the multi-os-dfu keymap.
+BOOTLOADER = tinyuf2
+MCU_LDSCRIPT = STM32G0B1xB_tinyuf2
+# No reset switch: hold the top-left key while plugging in for the
+# bootloader (QK_BOOT and Keeb-On! Studio's update also get there).
+BOOTMAGIC_ENABLE = yes

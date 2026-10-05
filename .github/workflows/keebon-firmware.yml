@@ -58,6 +58,14 @@ jobs:
           done
           # .uf2 boards also produce a .bin; ship only what is flashed.
           if [ -f out/${{ matrix.keyboard }}.uf2 ]; then rm -f out/${{ matrix.keyboard }}.bin; fi
+          # STM32G0 boards also ship a build for boards still without the
+          # TinyUF2 bootloader, written over the chip's DFU.
+          if [ -d keyboards/salicylic_acid3/${{ matrix.keyboard }}/keymaps/multi-os-dfu ]; then
+            make salicylic_acid3/${{ matrix.keyboard }}:multi-os-dfu
+            f=salicylic_acid3_${{ matrix.keyboard }}_multi-os-dfu.bin
+            [ -f "$f" ] || f=.build/$f
+            cp "$f" "out/${{ matrix.keyboard }}-dfu.bin"
+          fi
           ls -la out
       - uses: actions/upload-artifact@v4
         with:
@@ -68,10 +76,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: bootloaders
       - uses: actions/download-artifact@v4
         with:
           path: dist
           merge-multiple: true
+      - name: Add the bootloaders
+        run: cp bootloaders/*.bin dist/
       - name: Name the release
         id: name
         run: |
