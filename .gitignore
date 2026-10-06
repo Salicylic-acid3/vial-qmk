@@ -116,3 +116,6 @@ user_song_list.h
 compile_commands.json
 .clangd/
 .cache/
+
+# Keeb-On! bootloaders are shipped from the repository
+!bootloaders/*.bin
