@@ -24,9 +24,9 @@
 #define VIAL_COMBO_ENTRIES 32
 #define VIAL_TAP_DANCE_ENTRIES 16
 
-/* 3 ブロック x 4 レイヤー (Keeb-On! Studio の OS 切り替え用) */
+/* 3 ブロック x 5 レイヤー (Keeb-On! Studio の OS 切り替え用) */
 /* keyboard.json の dynamic_keymap.layer_count より優先させる */
 #undef DYNAMIC_KEYMAP_LAYER_COUNT
-#define DYNAMIC_KEYMAP_LAYER_COUNT 12
-#define KEEBON_OS_LAYERS_PER_BLOCK 4
+#define DYNAMIC_KEYMAP_LAYER_COUNT 15
+#define KEEBON_OS_LAYERS_PER_BLOCK 5
 #define KEEBON_OS_BLOCK_COUNT 3
