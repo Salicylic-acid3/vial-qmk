@@ -1,0 +1,91 @@
+{
+    "manufacturer": "Salicylic-acid3",
+    "keyboard_name": "clickboard_macro",
+    "maintainer": "Salicylic-acid3",
+    "bootloader": "stm32-dfu",
+    "features": {
+        "bootmagic": false,
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": false
+    },
+    "startup_delay": 0,
+    "usb_polling_interval_ms": 10,
+    "matrix_pins": {
+        "direct": [
+            [
+                "A15",
+                "B3",
+                "B4",
+                "B5",
+                "B6",
+                "B7"
+            ]
+        ]
+    },
+    "processor": "STM32G0B1",
+    "url": "https://salicylic-acid3.hatenablog.com/",
+    "usb": {
+        "vid": "0x355D",
+        "pid": "0x102D",
+        "device_version": "0.0.1"
+    },
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {
+                    "matrix": [
+                        0,
+                        2
+                    ],
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "matrix": [
+                        0,
+                        0
+                    ],
+                    "x": 0,
+                    "y": 0.5,
+                    "h": 0.5
+                },
+                {
+                    "matrix": [
+                        0,
+                        4
+                    ],
+                    "x": 2,
+                    "y": 0.5,
+                    "h": 0.5
+                },
+                {
+                    "matrix": [
+                        0,
+                        1
+                    ],
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "matrix": [
+                        0,
+                        3
+                    ],
+                    "x": 1,
+                    "y": 1
+                },
+                {
+                    "matrix": [
+                        0,
+                        5
+                    ],
+                    "x": 2,
+                    "y": 1
+                }
+            ]
+        }
+    }
+}

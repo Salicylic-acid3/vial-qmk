@@ -1,0 +1,14 @@
+{
+  "name": "clickboard_macro",
+  "vendorId": "0x355D",
+  "productId": "0x102D",
+  "lighting": "none",
+  "matrix": {"rows": 1, "cols": 6},
+  "layouts": {
+      "keymap": [
+        [{"x":1},"0,2"],
+        [{"y":-0.5,"h":0.5},"0,0",{"x":1,"h":0.5},"0,4"],
+        [{"y":-0.5},"0,1","0,3","0,5"]
+      ]
+  }
+}
