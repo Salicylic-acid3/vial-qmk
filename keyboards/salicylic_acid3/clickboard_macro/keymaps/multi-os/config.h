@@ -24,4 +24,4 @@
 #define VIAL_KEYBOARD_UID {0x39, 0x05, 0xE4, 0x89, 0x8B, 0x09, 0x3D, 0x8B}
 /* PgDn + PgUp を押し続けるとアンロック */
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
-#define VIAL_UNLOCK_COMBO_COLS { 0, 4 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 5 }
